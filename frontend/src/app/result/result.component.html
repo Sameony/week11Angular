@@ -1,0 +1,32 @@
+<div>
+  <div class="d-flex justify-content-between w-100 p-3">
+    <div></div>
+    <h3>Students Enrolled</h3>
+    <a class="abut btn btn-primary mr-2" href="/addstudent">Add record</a>
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Roll No</th>
+        <th>Name</th>
+        <th>Date of Birth</th>
+        <th>Score</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+      <tbody> 
+        <tr  *ngFor="let studentdata of st_data">
+          
+            <td>{{studentdata.rollno}}</td>
+            <td>{{studentdata.name}}</td>
+            <td>{{studentdata.dobs}}</td>
+            <td>{{studentdata.score }}</td>
+            <td>
+              <a routerLink = "/editstudent/{{studentdata.rollno}}"><i class="fas fa-edit mr-3" style="cursor: pointer;"></i></a>
+              <a (click)="deleteUser(studentdata.rollno)"><i class="fas fa-trash" style="cursor: pointer; color: red;"></i></a>
+            </td>
+          
+        </tr>
+      </tbody>
+  </table>
+</div>

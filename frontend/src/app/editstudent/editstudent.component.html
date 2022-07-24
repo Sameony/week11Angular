@@ -1,0 +1,61 @@
+<div class="tablecss">
+  <h3 class="text-center">Update Result</h3>
+</div>
+
+<div class="col-md-12">
+  <div class="card card-container p-2">
+
+    <form *ngIf="isLoggedIn" name="form" (ngSubmit)="(f.form.valid && onSubmit()); f.resetForm();" #f="ngForm"
+      novalidate class="text-center">
+      <div class="form-group ml-3 d-flex justify-center">
+        <label for="rollno" class="w-25" >Roll No.</label>
+        <input type="number" class="form-control w-50" name="rollno" [(ngModel)]="form.rollno" required #rollno="ngModel" />
+        <div class="alert alert-danger" role="alert" *ngIf="rollno.errors && f.submitted">
+          Roll number is required!
+        </div>
+      </div>
+      <div class="form-group ml-3 d-flex justify-center">
+        <label for="sname" class="w-25">Name</label>
+        <input type="text" class="form-control w-50" name="sname" [(ngModel)]="form.name" required
+          #sname="ngModel" />
+        <div class="alert alert-danger" role="alert" *ngIf="sname.errors && f.submitted">
+          <div *ngIf="sname.errors['required']">sname is required</div>
+          
+        </div>
+      </div>
+
+      <div class="form-group ml-3 d-flex justify-center">
+        <label for="Date" class="w-25">Date</label>
+        <input type="Date" class="form-control w-50" name="dob" [(ngModel)]="form.dobs" required #dob="ngModel" />
+        <div class="alert alert-danger" role="alert" *ngIf="dob.errors && f.submitted">
+          <div *ngIf="dob.errors['required']">dob is required</div>
+          <div *ngIf="dob.errors['minlength']">
+            DOB must follow (DD-MM-YYYY)
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-group ml-3 d-flex justify-center">
+        <label for="Score" class="w-25">Score</label>
+        <input type="number" class="w-50 form-control" name="score" [(ngModel)]="form.score" required #score="ngModel" />
+        <div class="alert alert-danger" role="alert" *ngIf="score.errors && f.submitted">
+          <div *ngIf="score.errors['required']">Score is required</div>
+
+        </div>
+      </div>
+
+      <div class="form-group d-flex justify-content-center">
+        <button class="btn btn-primary m-2" type="submit">
+          Update Details
+        </button>
+      </div>
+      <div class="form-group">
+        <div class="alert alert-danger" role="alert" *ngIf="f.submitted && !isLoginFailed">
+          Update student failed: {{ errorMessage }}
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>
